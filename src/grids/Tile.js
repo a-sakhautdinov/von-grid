@@ -1,9 +1,7 @@
-/*
-	Example tile class that constructs its geometry for rendering and holds some gameplay properties.
+import vg from "../vg";
+import * as THREE from "three";
 
-	@author Corey Birnbaum https://github.com/vonWolfehaus/
-*/
-vg.Tile = function(config) {
+function Tile(config) {
 	config = config || {};
 	var settings = {
 		cell: null, // required vg.Cell
@@ -54,49 +52,50 @@ vg.Tile = function(config) {
 	else {
 		this._emissive = null;
 	}
+}
+
+Tile.prototype = {
+  constructor: Tile,
+  select: function() {
+    if (this.material.emissive) {
+      this.material.emissive.setHex(this.highlight);
+    }
+    this.selected = true;
+    return this;
+  },
+
+  deselect: function() {
+    if (this._emissive !== null && this.material.emissive) {
+      this.material.emissive.setHex(this._emissive);
+    }
+    this.selected = false;
+    return this;
+  },
+
+  toggle: function() {
+    if (this.selected) {
+      this.deselect();
+    }
+    else {
+      this.select();
+    }
+    return this;
+  },
+
+  dispose: function() {
+    if (this.cell && this.cell.tile) this.cell.tile = null;
+    this.cell = null;
+    this.position = null;
+    this.rotation = null;
+    if (this.mesh.parent) this.mesh.parent.remove(this.mesh);
+    this.mesh.userData.structure = null;
+    this.mesh = null;
+    this.material = null;
+    this.userData = null;
+    this.entity = null;
+    this.geometry = null;
+    this._emissive = null;
+  }
 };
 
-vg.Tile.prototype = {
-	select: function() {
-		if (this.material.emissive) {
-			this.material.emissive.setHex(this.highlight);
-		}
-		this.selected = true;
-		return this;
-	},
-
-	deselect: function() {
-		if (this._emissive !== null && this.material.emissive) {
-			this.material.emissive.setHex(this._emissive);
-		}
-		this.selected = false;
-		return this;
-	},
-
-	toggle: function() {
-		if (this.selected) {
-			this.deselect();
-		}
-		else {
-			this.select();
-		}
-		return this;
-	},
-
-	dispose: function() {
-		if (this.cell && this.cell.tile) this.cell.tile = null;
-		this.cell = null;
-		this.position = null;
-		this.rotation = null;
-		if (this.mesh.parent) this.mesh.parent.remove(this.mesh);
-		this.mesh.userData.structure = null;
-		this.mesh = null;
-		this.material = null;
-		this.userData = null;
-		this.entity = null;
-		this.geometry = null;
-		this._emissive = null;
-	}
-};
-
-vg.Tile.prototype.constructor = vg.Tile;
+export default Tile;

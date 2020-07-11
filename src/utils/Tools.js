@@ -1,4 +1,4 @@
-vg.Tools = {
+const Tools = {
 	clamp: function(val, min, max) {
 		return Math.max(min, Math.min(max, val));
 	},
@@ -67,7 +67,7 @@ vg.Tools = {
 	// https://github.com/KyleAMathews/deepmerge/blob/master/index.js
 	merge: function(target, src) {
 		var self = this, array = Array.isArray(src);
-		var dst = array && [] || {};
+		var dst = (array && []) || {};
 		if (array) {
 			target = target || [];
 			dst = dst.concat(target);
@@ -188,3 +188,5 @@ vg.Tools = {
 		xhr.send('');
 	}
 };
+
+export default Tools;

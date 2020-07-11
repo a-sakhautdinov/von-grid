@@ -1,6 +1,5 @@
-/*
-	@source https://github.com/qiao/PathFinding.js/
-*/
+import vg from "../vg";
+
 vg.PathUtil = {
 	/**
 	 * Backtrace according to the parent records and return the path.

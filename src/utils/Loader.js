@@ -1,4 +1,6 @@
-vg.Loader = {
+import * as THREE from "three";
+
+const Loader = {
 	manager: null,
 	imageLoader: null,
 	crossOrigin: false,
@@ -34,3 +36,5 @@ vg.Loader = {
 		return texture;
 	}
 };
+
+export default Loader;

@@ -1,9 +1,6 @@
-/*
-	Simple structure for holding grid coordinates and extra data about them.
+import LinkedList from "../lib/LinkedList";
 
-	@author Corey Birnbaum https://github.com/vonWolfehaus/
-*/
-vg.Cell = function(q, r, s, h) {
+function Cell(q, r, s, h) {
 	this.q = q || 0; // x grid coordinate (using different letters so that it won't be confused with pixel/world coordinates)
 	this.r = r || 0; // y grid coordinate
 	this.s = s || 0; // z grid coordinate
@@ -16,38 +13,40 @@ vg.Cell = function(q, r, s, h) {
 	this._priority = 0;
 	this._visited = false;
 	this._parent = null;
-	this.uniqueID = vg.LinkedList.generateID();
+	this.uniqueID = LinkedList.generateID();
+}
+
+
+Cell.prototype = {
+  constructor: Cell,
+  set: function(q, r, s) {
+    this.q = q;
+    this.r = r;
+    this.s = s;
+    return this;
+  },
+
+  copy: function(cell) {
+    this.q = cell.q;
+    this.r = cell.r;
+    this.s = cell.s;
+    this.h = cell.h;
+    this.tile = cell.tile || null;
+    this.userData = cell.userData || {};
+    this.walkable = cell.walkable;
+    return this;
+  },
+
+  add: function(cell) {
+    this.q += cell.q;
+    this.r += cell.r;
+    this.s += cell.s;
+    return this;
+  },
+
+  equals: function(cell) {
+    return this.q === cell.q && this.r === cell.r && this.s === cell.s;
+  }
 };
 
-vg.Cell.prototype = {
-	set: function(q, r, s) {
-		this.q = q;
-		this.r = r;
-		this.s = s;
-		return this;
-	},
-
-	copy: function(cell) {
-		this.q = cell.q;
-		this.r = cell.r;
-		this.s = cell.s;
-		this.h = cell.h;
-		this.tile = cell.tile || null;
-		this.userData = cell.userData || {};
-		this.walkable = cell.walkable;
-		return this;
-	},
-
-	add: function(cell) {
-		this.q += cell.q;
-		this.r += cell.r;
-		this.s += cell.s;
-		return this;
-	},
-
-	equals: function(cell) {
-		return this.q === cell.q && this.r === cell.r && this.s === cell.s;
-	}
-};
-
-vg.Cell.prototype.constructor = vg.Cell;
+export default Cell;
