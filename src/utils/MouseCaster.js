@@ -97,6 +97,9 @@ MouseCaster.prototype = {
   },
 
   _onDocumentMouseDown: function(evt) {
+    if (!this.active) {
+      return;
+    }
     evt = evt || window.event;
     evt.preventDefault();
     if (this._preventDefault) {
@@ -116,6 +119,9 @@ MouseCaster.prototype = {
   },
 
   _onDocumentMouseUp: function(evt) {
+    if (!this.active) {
+      return;
+    }
     evt.preventDefault();
     if (this._preventDefault) {
       this._preventDefault = false;
@@ -134,6 +140,9 @@ MouseCaster.prototype = {
   },
 
   _onDocumentMouseMove: function(evt) {
+    if (!this.active) {
+      return;
+    }
     evt.preventDefault();
     this.screenPosition.x = (evt.clientX / window.innerWidth) * 2 - 1;
     this.screenPosition.y = -(evt.clientY / window.innerHeight) * 2 + 1;
