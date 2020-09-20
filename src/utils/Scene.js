@@ -14,7 +14,8 @@ function Scene(sceneConfig, controlConfig) {
 		lightPosition: null,
 		cameraType: 'PerspectiveCamera',
 		cameraPosition: null, // {x, y, z}
-		orthoZoom: 4
+		orthoZoom: 4,
+		scene: null,
 	};
 
 	var controlSettings = {
@@ -41,7 +42,7 @@ function Scene(sceneConfig, controlConfig) {
 
 	this.orthoZoom = sceneSettings.orthoZoom;
 
-	this.container = new THREE.Scene();
+	this.container = sceneSettings.scene || new THREE.Scene();
 	this.container.fog = sceneSettings.fog;
 
 	this.container.add(new THREE.AmbientLight(0xdddddd));
@@ -134,7 +135,15 @@ Scene.prototype = {
 
   focusOn: function(obj) {
     this.camera.lookAt(obj.position);
-  }
+	},
+	
+	expose3JS: function() {
+		return {
+			scene: this.container,
+			camera: this.camera,
+			renderer: this.renderer,
+		}
+	},
 };
 
 export default Scene;
