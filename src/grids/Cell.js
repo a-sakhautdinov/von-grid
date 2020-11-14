@@ -6,7 +6,8 @@ function Cell(q, r, s, h) {
 	this.s = s || 0; // z grid coordinate
 	this.h = h || 1; // 3D height of the cell, used by visual representation and pathfinder, cannot be less than 1
 	this.tile = null; // optional link to the visual representation's class instance
-	this.userData = {}; // populate with any extra data needed in your game
+	this.hexData = {}; // populate with any extra data needed in your game
+	this.gameData = {}; // populate with any extra data needed in your game
 	this.walkable = true; // if true, pathfinder will use as a through node
 	// rest of these are used by the pathfinder and overwritten at runtime, so don't touch
 	this._calcCost = 0;
@@ -32,7 +33,8 @@ Cell.prototype = {
     this.s = cell.s;
     this.h = cell.h;
     this.tile = cell.tile || null;
-    this.userData = cell.userData || {};
+    this.hexData = cell.hexData || {};
+    this.gameData = cell.gameData || {};
     this.walkable = cell.walkable;
     return this;
   },

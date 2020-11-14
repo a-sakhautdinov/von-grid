@@ -30,13 +30,13 @@ function Tile(config) {
 
 	this.objectType = vg.TILE;
 	this.entity = null;
-	this.userData = {};
+	this.hexData = {};
 
 	this.selected = false;
 	this.highlight = '0x0084cc';
 
 	this.mesh = new THREE.Mesh(this.geometry, this.material);
-	this.mesh.userData.structure = this;
+	this.mesh.hexData.structure = this;
 
 	// create references so we can control orientation through this (Tile), instead of drilling down
 	this.position = this.mesh.position;
@@ -88,10 +88,10 @@ Tile.prototype = {
     this.position = null;
     this.rotation = null;
     if (this.mesh.parent) this.mesh.parent.remove(this.mesh);
-    this.mesh.userData.structure = null;
+    this.mesh.hexData.structure = null;
     this.mesh = null;
     this.material = null;
-    this.userData = null;
+    this.hexData = null;
     this.entity = null;
     this.geometry = null;
     this._emissive = null;

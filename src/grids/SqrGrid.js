@@ -366,7 +366,8 @@ vg.SqrGrid.prototype = {
 				s: c.s,
 				h: c.h,
 				walkable: c.walkable,
-				userData: c.userData
+				hexData: c.hexData,
+				gameData: c.gameData,
 			});
 		}
 		json.cells = cells;

@@ -212,7 +212,7 @@
 			var i, t;
 			var objects = mouse.allHits;
 			for (i = 0; i < objects.length; i++) {
-				t = objects[i].object.userData.structure;
+				t = objects[i].object.hexData.structure;
 				if (t && t.objectType && t.objectType === vg.TILE) {
 					return t;
 				}

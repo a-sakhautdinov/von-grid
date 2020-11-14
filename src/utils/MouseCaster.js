@@ -61,7 +61,7 @@ MouseCaster.prototype = {
     if (intersects.length > 0) {
       // get the first object under the mouse
       hit = intersects[0];
-      obj = hit.object.userData.structure;
+      obj = hit.object.hexData.structure;
       if (this.pickedObject !== obj) {
         // the first object changed, meaning there's a different one, or none at all
         if (this.pickedObject) {

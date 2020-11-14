@@ -53,7 +53,7 @@ var Sprite = function(settings) {
   this.view = new THREE.Sprite(this.material);
   this.view.scale.set(this.scale, this.scale, this.scale);
   this.view.visible = false;
-  this.view.userData.structure = this;
+  this.view.hexData.structure = this;
   this.geo = this.view.geometry;
 
   this.position = this.view.position;
