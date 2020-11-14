@@ -36,7 +36,7 @@ function Tile(config) {
 	this.highlight = '0x0084cc';
 
 	this.mesh = new THREE.Mesh(this.geometry, this.material);
-	this.mesh.hexData.structure = this;
+	this.mesh.userData.structure = this;
 
 	// create references so we can control orientation through this (Tile), instead of drilling down
 	this.position = this.mesh.position;
@@ -88,7 +88,7 @@ Tile.prototype = {
     this.position = null;
     this.rotation = null;
     if (this.mesh.parent) this.mesh.parent.remove(this.mesh);
-    this.mesh.hexData.structure = null;
+    this.mesh.userData.structure = null;
     this.mesh = null;
     this.material = null;
     this.hexData = null;
