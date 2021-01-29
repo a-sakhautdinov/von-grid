@@ -67,6 +67,7 @@ function Scene(sceneConfig, controlConfig) {
 		this.controls.maxDistance = controlSettings.maxDistance;
 		this.controls.zoomSpeed = controlSettings.zoomSpeed;
 		this.controls.noZoom = controlSettings.noZoom;
+		this.controls.panning = false;
 	}
 
 	if (sceneSettings.cameraPosition) {
