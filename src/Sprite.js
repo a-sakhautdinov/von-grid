@@ -42,7 +42,8 @@ var Sprite = function(settings) {
     this.material = new THREE.SpriteMaterial({
       map: this.texture,
       color: 0xffffff,
-      fog: true
+      transparent: true,
+      alphaTest: 0.5,
     });
   }
 

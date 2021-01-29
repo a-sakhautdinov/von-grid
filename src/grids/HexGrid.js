@@ -203,7 +203,7 @@ HexGrid.prototype = {
 
   generateTilePoly: function(material) {
     if (!material) {
-      material = new THREE.MeshBasicMaterial({color: 0x24b4ff});
+      material = new THREE.LineBasicMaterial({color: 0x24b4ff});
     }
     const mesh = new THREE.Mesh(this.cellShapeGeo, material);
     this._vec3.set(1, 0, 0);
